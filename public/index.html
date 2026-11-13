@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ledger — chat agent</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Cpath d=%22M8 1l7 7-7 7-7-7z%22 fill=%22%232f5d50%22/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <aside id="sidebar">
+    <div class="brand">
+      <span class="logo">◆</span>
+      <div>
+        <div class="name">Ledger</div>
+        <div class="tag">remembers what it told you, and re-checks it</div>
+      </div>
+    </div>
+    <button id="newChat" class="primary">+ New chat</button>
+    <div class="section-label">Conversations</div>
+    <nav id="threads"></nav>
+    <div class="sidebar-foot">
+      <button id="openLedger" class="ghost">Fact ledger <span id="ledgerCount" class="count"></span></button>
+      <div id="clockBox" class="clock" hidden>
+        <label for="clock">Agent clock <span class="hint">(for testing “last Tuesday”)</span></label>
+        <div class="clock-row">
+          <input id="clock" type="datetime-local" />
+          <button id="clockLive" class="ghost small">Live</button>
+        </div>
+        <div id="clockState" class="hint"></div>
+      </div>
+      <div id="modelInfo" class="hint"></div>
+    </div>
+  </aside>
+
+  <main>
+    <div id="banner" hidden></div>
+    <div id="messages">
+      <div id="empty" class="empty">
+        <h1>Ask anything. Ask again next week.</h1>
+        <p>I search the web, cite sources, and keep a dated record of every fact I tell you — so you can ask
+          <em>“has any of that changed since Tuesday?”</em> and get a real answer.</p>
+        <div class="examples">
+          <button>Compare pricing of Neon, Supabase and Render for a small Postgres database</button>
+          <button>What are the best CRM tools for a 20-person sales team right now?</button>
+          <button>What did I ask you yesterday? Is your answer still correct?</button>
+        </div>
+      </div>
+    </div>
+    <form id="composer">
+      <textarea id="input" rows="1" placeholder="Message Ledger…  (Enter to send, Shift+Enter for a new line)"></textarea>
+      <button id="send" class="primary" type="submit">Send</button>
+    </form>
+  </main>
+
+  <div id="ledger" class="drawer" hidden>
+    <div class="drawer-head">
+      <div>
+        <h2>Fact ledger</h2>
+        <p class="hint">Every checkable fact the agent has stated, when it was observed, and every re-check.</p>
+      </div>
+      <button id="closeLedger" class="ghost">Close</button>
+    </div>
+    <div id="ledgerBody"></div>
+  </div>
+
+  <script src="/vendor/marked.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
